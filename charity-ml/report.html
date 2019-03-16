@@ -12959,11 +12959,17 @@ I will choose AdaBoost as my model!!!</p>
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Boosting is an ensemble technique that attempts to create a strong classifier from a number of weak classifiers.
-AdaBoost is best used to boost the performance of decision trees on binary classification problems(as is our case).</p>
-<p>Adaboost works by combining several simple  weak learners to create an ensemble of learners that can correctly classify teh data.This algorithm is trained using several iterations.</p>
-<p>During each iteration, the model finds out the points where it has predicted badly. It assigns higher weights to the observations that it was unable to classify correctly.  With each round, the model finds the best learner to incorporate into the ensemble, repeating the process for the specified number of rounds, or till we can’t improve the predictions further.</p>
-<p>All the learners are then combined to make a final ensembled model which represents the final output of the boosted classifier.</p>
+<p>Adaboost is an algorithm that combines classifiers with poor performance into a bigger classifier with much higher performance. The intent here is to  let each weak  classifier focus on the mistakes the previous ones were not able to fix. Then combine them into one large classifier.</p>
+<p>Below is a simple approach of how it works:</p>
+<p>1) Train a weak learner. 
+2) Add it to the set of weak learners trained so far.
+3) Increase the importance of samples that are still miss-classified.So the weights associated with the incorrect points can be increased to make it more close to 50:50 (when the sum of correctly classified points weights are compared).
+4) The next weak learner will focus on classifying these points correctly. This process will go on.
+5) All the weak learners are then combined to get one strong learner.
+6) Each weak learner is assigned a weight based on the correct/incorrect classified points.
+6) Then each point in the dataset is given weights as per all the weak learners.Each weak learner will give positive and negative weight values to the points based on the classification.
+7) All these weights are then summed up, and the final classifcation happens on the final weight of each point (positive or negataive).
+8) That is how it gives the final prediction.</p>
 
 </div>
 </div>
